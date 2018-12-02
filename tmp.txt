@@ -1,0 +1,46 @@
+print(datetime.datetime.now())
+
+overall_ratio = 1
+
+sub_dict = getSubSet(train_data, overall_ratio, match_data)
+sub_data = sub_dict['subset']
+sub_keys = list( set( sub_dict['keys'] ) )
+
+cutoff1 = len(sub_keys) / 3
+cutoff2 = len(sub_keys) / 3 * 2
+test_key = sub_keys[:cutoff1]
+train_key = sub_keys[cutoff1:cutoff2]
+valid_key = sub_keys[cutoff2:]
+
+train_set = []
+test_set = []
+valid_set = []
+
+print("sub_match_data ", datetime.datetime.now())
+sub_match_data = defaultdict(list)
+for d in sub_data:
+    matchID = d['matchId']
+    sub_match_data[matchID].append(d)
+
+print("train_key", datetime.datetime.now())
+for k in train_key:
+    train_set += sub_match_data[k]
+
+print("test_key", datetime.datetime.now())
+for k in test_key:
+    test_set += sub_match_data[k]
+    
+print("valid_key", datetime.datetime.now())
+for k in valid_key:
+    valid_set += sub_match_data[k]
+
+print len(train_set)
+print train_set[0]
+
+print len(test_set)
+print test_set[0]
+
+print len(valid_set)
+print valid_set[0]
+
+print(datetime.datetime.now())

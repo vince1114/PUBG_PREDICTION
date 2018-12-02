@@ -1,0 +1,11 @@
+train_key_set = set(train_key)
+test_key_set = set(test_key)
+valid_key_set = set(valid_key)
+
+print len(train_key)
+print len(test_key)
+print len(valid_key)
+
+print len(list(train_key_set.difference(test_key_set)))
+print len(list(train_key_set.difference(valid_key_set)))
+print len(list(test_key_set.difference(valid_key_set)))
